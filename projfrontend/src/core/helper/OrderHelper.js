@@ -1,0 +1,19 @@
+import { API } from "../../backend";
+
+export const createOrder = (userId, token, orderData) => {
+    console.log("2.",token)
+    console.log("3",orderData)
+    return fetch(`${API}/order/create/${userId}`, {
+        method: "POST",
+        header: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ order: orderData })
+
+    }).then(response => {
+        return response.json()
+    })
+        .catch(err => console.log(err))
+}
